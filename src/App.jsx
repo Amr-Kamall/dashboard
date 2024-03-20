@@ -19,7 +19,7 @@ function App() {
   const [isDashboard, setIsDashboard] = useState(false);
   return (
     <BrowserRouter>
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<h1>loading...</h1>}>
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route
