@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import { Suspense, lazy, useState } from "react";
+import Spinner from "./components/Spinner";
 const AppLayout = lazy(() => import("./pages/applayout/AppLayout"));
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Team = lazy(() => import("./pages/team/Team"));
@@ -19,7 +19,7 @@ function App() {
   const [isDashboard, setIsDashboard] = useState(false);
   return (
     <BrowserRouter>
-      <Suspense fallback={<h1>loading.....</h1>}>
+      <Suspense fallback={<Spinner />}>
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route
