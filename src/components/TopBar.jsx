@@ -1,4 +1,4 @@
-import { IconButton, Stack, Toolbar, alpha, styled } from "@mui/material";
+import { Box, IconButton, Stack, Toolbar, alpha, styled } from "@mui/material";
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import MuiAppBar from "@mui/material/AppBar";
@@ -88,7 +88,14 @@ function TopBar({ open, setMode, handleDrawerOpen }) {
         >
           <MenuIcon />
         </IconButton>
-        <div className="flex">
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -143,7 +150,7 @@ function TopBar({ open, setMode, handleDrawerOpen }) {
               <PersonOutlineOutlinedIcon />
             </IconButton>
           </Stack>
-        </div>
+        </Box>
       </Toolbar>
     </AppBar>
   );
