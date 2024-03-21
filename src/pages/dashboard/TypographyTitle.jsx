@@ -8,6 +8,7 @@ function TypographyTitle({ children, padding }) {
   if (padding) {
     return (
       <Typography
+        variant="h1"
         color={theme.palette.secondary.main}
         fontSize={21}
         fontWeight={700}
