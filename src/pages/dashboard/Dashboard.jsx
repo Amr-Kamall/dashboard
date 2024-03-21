@@ -30,6 +30,7 @@ function Dashboard({ setIsDashboard, isDashboard }) {
           }}
         >
           <Typography
+            variant="h1"
             sx={{
               color: theme.palette.info.light,
               fontSize: 23,
