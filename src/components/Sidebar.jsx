@@ -138,8 +138,8 @@ function Sidebar({ open, handleDrawerClose }) {
           border: "2px solid gray",
           transition: "0.25s",
         }}
-        alt="amr sharp"
-        src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt="profile"
+        src="/profile.png"
       />
       <Typography
         style={{
