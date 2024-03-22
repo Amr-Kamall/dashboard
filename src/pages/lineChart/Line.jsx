@@ -39,8 +39,6 @@ function Line() {
             stroke: theme.palette.divider,
             strokeWidth: 0,
           },
-          // Set enableGridX to false to resolve the error
-          enableGridX: false,
         },
         legends: {
           title: {
@@ -59,6 +57,35 @@ function Line() {
               fontSize: 10,
               fill: theme.palette.text.primary,
             },
+          },
+        },
+        annotations: {
+          text: {
+            fontSize: 13,
+            fill: theme.palette.text.primary,
+            outlineWidth: 2,
+            outlineColor: "#ffffff",
+            outlineOpacity: 1,
+          },
+          link: {
+            stroke: "#000000",
+            strokeWidth: 1,
+            outlineWidth: 2,
+            outlineColor: "#ffffff",
+            outlineOpacity: 1,
+          },
+          outline: {
+            stroke: "#000000",
+            strokeWidth: 2,
+            outlineWidth: 2,
+            outlineColor: "#ffffff",
+            outlineOpacity: 1,
+          },
+          symbol: {
+            fill: "#000000",
+            outlineWidth: 2,
+            outlineColor: "#ffffff",
+            outlineOpacity: 1,
           },
         },
         tooltip: {
@@ -85,13 +112,14 @@ function Line() {
         stacked: true,
         reverse: false,
       }}
-      yFormat=">.2f"
+      yFormat=" >-.2f"
       axisTop={null}
       axisRight={null}
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
+        legend: "transportation",
         legendOffset: 36,
         legendPosition: "middle",
       }}
@@ -99,6 +127,7 @@ function Line() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
+        legend: "Count",
         legendOffset: -45,
         legendPosition: "middle",
       }}

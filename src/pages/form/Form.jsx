@@ -119,14 +119,7 @@ function Form() {
         })}
         helperText={errors.phone ? "Please Provide a Valid Phone Number" : ""}
       />
-      <TextField
-        label="Address 1"
-        variant="filled"
-        // {...register("address", {
-        //   required: true,
-        // })}
-        // helperText={errors.address ? "Please Provide a Valid address" : ""}
-      />
+      <TextField label="Address 1" variant="filled" />
       <TextField label="Address 2" variant="filled" />
 
       {/* menu */}

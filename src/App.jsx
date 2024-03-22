@@ -13,6 +13,8 @@ import Form from "./pages/form/Form";
 import Invoices from "./pages/invoices/Invoices";
 import LineChart from "./pages/lineChart/LineChart";
 import PieChart from "./pages/pieChart/PieChart";
+import LoginForm from "./pages/authantication/LoginForm";
+import ProtectedRoute from "./components/ProtectedRoute";
 // import Spinner from "./components/Spinner";
 // const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 // const Team = lazy(() => import("./pages/team/Team"));
@@ -33,7 +35,15 @@ function App() {
     <BrowserRouter>
       {/* <Suspense fallback={<h1>loading...</h1>}> */}
       <Routes>
-        <Route path="/" element={<AppLayout />}>
+        <Route path="login" element={<LoginForm />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route
             index
             element={
