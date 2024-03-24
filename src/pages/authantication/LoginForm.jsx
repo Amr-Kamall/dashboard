@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../services/apiAuth";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../../components/Spinner";
 
 const regEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -103,6 +104,7 @@ function LoginForm() {
               Email Address
             </Typography>
             <input
+              disabled={loading}
               style={{
                 width: "100%",
                 padding: "8px 10px",
@@ -110,9 +112,18 @@ function LoginForm() {
                 background: "transparent",
                 border: "1px solid grey",
               }}
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: true,
+                pattern: {
+                  value: regEmail,
+                },
+              })}
             />
-            {errors.email && <span>This field is required</span>}
+            {errors.email && (
+              <span style={{ color: "Red", fontSize: "13px" }}>
+                Please Provide a Valid Email Address
+              </span>
+            )}
           </Box>
           <Box
             sx={{
@@ -133,6 +144,7 @@ function LoginForm() {
               Password
             </Typography>
             <input
+              disabled={loading}
               style={{
                 width: "100%",
                 padding: "8px 10px",
@@ -140,12 +152,19 @@ function LoginForm() {
                 background: "transparent",
                 border: "1px solid grey",
               }}
-              {...register("password", { required: true })}
+              {...register("password", {
+                required: true,
+                minLength: { value: 4 },
+              })}
             />
-            {errors.password && <span>This field is required</span>}
+            {errors.password && (
+              <span style={{ color: "Red", fontSize: "13px" }}>
+                Password needs a minimum of 8 characters
+              </span>
+            )}
           </Box>
           <Button type="submit" fullWidth variant="contained">
-            {loading ? "loading...." : "login"}
+            {loading ? <Spinner width="small" /> : "login"}
           </Button>
         </Paper>
         <Snackbar

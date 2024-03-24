@@ -45,7 +45,7 @@ const Array1 = [
 ];
 
 const Array2 = [
-  { text: "Profile Form", icon: <PersonOutlined />, path: "/form" },
+  { text: "Profile Form", icon: <PersonOutlined />, path: "/users" },
   { text: "Calendar", icon: <CalendarTodayOutlined />, path: "/calendar" },
   {
     text: "FAQ Page",

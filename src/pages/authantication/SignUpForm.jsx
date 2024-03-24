@@ -6,29 +6,38 @@ import {
   Snackbar,
   TextField,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { signUp } from "../../services/apiAuth";
 
-function Form() {
+function SignUpForm() {
+  const [loading, setLoading] = useState(false);
   // reg expression
   const regEmail =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const regNumber = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
 
   const {
     register,
     handleSubmit,
+    getValues,
     reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    handleClick();
-    console.log(data);
-    reset();
-  };
+  async function onSubmit(data) {
+    try {
+      setLoading(true);
+      await signUp(data);
+      handleClick();
+      reset();
+    } catch (error) {
+      console.log("error in sign up yalaa");
+    } finally {
+      setLoading(false);
+    }
+  }
 
-  // select
+  // select;
   const currencies = [
     {
       value: "Admin",
@@ -45,13 +54,10 @@ function Form() {
   ];
 
   // snackbar
-
   const [open, setOpen] = React.useState(false);
-
   const handleClick = () => {
     setOpen(true);
   };
-
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -79,6 +85,7 @@ function Form() {
         }}
       >
         <TextField
+          disabled={loading}
           sx={{ width: "50%" }}
           label="First Name"
           variant="filled"
@@ -89,6 +96,7 @@ function Form() {
           }
         />
         <TextField
+          disabled={loading}
           sx={{ width: "50%" }}
           label="Last Name"
           variant="filled"
@@ -100,6 +108,7 @@ function Form() {
         />
       </Box>
       <TextField
+        disabled={loading}
         label="Email"
         variant="filled"
         error={Boolean(errors.email)}
@@ -110,21 +119,36 @@ function Form() {
         helperText={errors.email ? "Please Provide a Valid Email Address" : ""}
       />
       <TextField
-        label="Contact Number"
+        disabled={loading}
+        label="Password"
         variant="filled"
-        error={Boolean(errors.phone)}
-        {...register("phone", {
+        error={Boolean(errors.password)}
+        {...register("password", {
           required: true,
-          pattern: regNumber,
+          minLength: {
+            value: 8,
+          },
         })}
-        helperText={errors.phone ? "Please Provide a Valid Phone Number" : ""}
+        helperText={
+          errors.password ? "Password needs a minimum of 8 character" : ""
+        }
       />
-      <TextField label="Address 1" variant="filled" />
-      <TextField label="Address 2" variant="filled" />
+      <TextField
+        disabled={loading}
+        label="Repeat Password"
+        variant="filled"
+        error={Boolean(errors.passwordConfirm)}
+        {...register("passwordConfirm", {
+          required: true,
+          validate: (value) => value === getValues().password || "",
+        })}
+        helperText={errors.passwordConfirm ? "password need to match" : ""}
+      />
 
       {/* menu */}
 
       <TextField
+        disabled={loading}
         id="standard-select-currency-native"
         select
         label="Role"
@@ -139,6 +163,7 @@ function Form() {
       </TextField>
       <Box sx={{ display: "flex", justifyContent: "end" }}>
         <Button
+          disabled={loading}
           type="submit"
           variant="contained"
           sx={{ textTransform: "capitalize" }}
@@ -165,4 +190,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default SignUpForm;

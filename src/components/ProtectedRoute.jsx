@@ -11,8 +11,7 @@ function ProtectedRoute({ children }) {
     async function fetchCurrentUser() {
       try {
         const user = await getCurrentUser();
-        const isAuthanicated = user.role === "authenticated";
-        console.log(isAuthanicated);
+        const isAuthanicated = user?.role === "authenticated";
         if (!user && !isAuthanicated) {
           // Redirect to login page if no authenticated user
           navigate("/login");
@@ -30,9 +29,14 @@ function ProtectedRoute({ children }) {
     fetchCurrentUser();
   }, [navigate]);
 
-  //   if (loading) {
-  //     return <Spinner />; // Display a loading indicator while fetching user data
-  //   }
+  if (loading) {
+    return (
+      <div className="loader-wrapper">
+        {" "}
+        <Spinner />{" "}
+      </div>
+    ); // Display a loading indicator while fetching user data
+  }
   // 1. load the authanticated user
 
   // 2. while loading, show a spinner
