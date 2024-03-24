@@ -65,7 +65,7 @@ function LoginForm() {
       bgcolor={theme.palette.grey[300]}
     >
       <Typography
-        variant="h1"
+        variant="h3"
         sx={{
           fontSize: "25px",
           fontWeight: "bold",

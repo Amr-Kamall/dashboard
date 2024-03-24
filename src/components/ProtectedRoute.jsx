@@ -22,7 +22,7 @@ function ProtectedRoute({ children }) {
       } catch (error) {
         console.error("Error fetching current user:", error.message);
         // Handle error or redirect to login page
-        navigate("/login");
+        // navigate("/login");
       }
     }
 
