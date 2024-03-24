@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../services/apiAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 
 const regEmail =
@@ -65,7 +65,7 @@ function LoginForm() {
       bgcolor={theme.palette.grey[300]}
     >
       <Typography
-        // variant="h1"
+        variant="h1"
         sx={{
           fontSize: "25px",
           fontWeight: "bold",
@@ -166,6 +166,22 @@ function LoginForm() {
           <Button type="submit" fullWidth variant="contained">
             {loading ? <Spinner width="small" /> : "login"}
           </Button>
+          <Box
+            display={"flex"}
+            background={"Red"}
+            width={"100%"}
+            height={"1px"}
+            padding={0}
+            margin={0}
+            justifyContent={"end"}
+          >
+            <Link
+              style={{ textDecoration: "none" }}
+              onClick={() => navigate("/users")}
+            >
+              sign up
+            </Link>
+          </Box>
         </Paper>
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
