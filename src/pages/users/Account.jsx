@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import UpdateUserDataForm from "../authantication/UpdateUserDataForm";
-import UpdatePassword from "../authantication/UpdatePassword";
+// import UpdatePassword from "../authantication/UpdatePassword";
 
 function Account() {
   return (
@@ -18,7 +18,7 @@ function Account() {
         <UpdateUserDataForm />
       </Box>
       <Box display={"flex"} flexDirection={"column"} gap={1}>
-        <UpdatePassword />
+        {/* <UpdatePassword /> */}
       </Box>
     </Stack>
   );

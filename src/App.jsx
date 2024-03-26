@@ -23,7 +23,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="login" element={<LoginForm />} />
-        <Route path="/" element={<AppLayout />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route
             index
             element={

@@ -5,23 +5,25 @@ import { useQuery } from "react-query";
 import Spinner from "./Spinner";
 
 function UserAvatar() {
-  const { data: userData, isLoading } = useQuery("userData", getCurrentUser);
+  const { data: userData, isLoading } = useQuery({
+    queryKey: ["userData"],
+    queryFn: getCurrentUser,
+  });
 
   if (isLoading) return <Spinner width={"small"} />;
   if (!userData || !userData.user_metadata) {
     return null;
   }
 
-  const { firstName, avatar } = userData.user_metadata;
-
+  const { fullName, avatar } = userData.user_metadata;
   return (
     <Stack direction={"row"} alignItems={"center"} gap={1}>
       <img
         src={avatar || "/default-user.jpg"}
         className="img-avatar"
-        alt={firstName}
+        alt={fullName}
       />
-      <Typography>{firstName}</Typography>
+      <Typography>{fullName}</Typography>
     </Stack>
   );
 }

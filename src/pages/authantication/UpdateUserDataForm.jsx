@@ -27,7 +27,7 @@ function UpdateUserDataForm() {
     data: userData,
     error,
     isLoading,
-  } = useQuery("userData", getCurrentUser);
+  } = useQuery({ queryKey: "userData", queryFn: getCurrentUser });
 
   useEffect(() => {
     if (userData && userData.user_metadata) {
