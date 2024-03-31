@@ -11,15 +11,16 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../services/apiAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 
 const regEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-function LoginForm() {
+function LoginForm({ isSignIn, setIsSignIn }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  console.log(isSignIn);
 
   const theme = useTheme();
   const {
@@ -74,10 +75,11 @@ function LoginForm() {
       >
         Log in to your account
       </Typography>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <Paper
           sx={{
-            padding: "2rem ",
+            padding: "2rem 2rem 2.5rem 2rem ",
             width: 400,
             display: "flex",
             flexDirection: "column",
@@ -175,12 +177,16 @@ function LoginForm() {
             margin={0}
             justifyContent={"end"}
           >
-            <Link
-              style={{ textDecoration: "none" }}
-              onClick={() => navigate("/users")}
+            <Button
+              sx={{ padding: "13px 15px " }}
+              variant="outlined"
+              onClick={() => {
+                setIsSignIn(true);
+                navigate("/signUp");
+              }}
             >
               sign up
-            </Link>
+            </Button>
           </Box>
         </Paper>
         <Snackbar

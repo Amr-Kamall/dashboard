@@ -16,13 +16,19 @@ import LoginForm from "./pages/authantication/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Users from "./pages/users/Users";
 import Account from "./pages/users/Account";
+import SignUpForm from "./pages/authantication/SignUpForm";
 
 function App() {
   const [isDashboard, setIsDashboard] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(false);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="login" element={<LoginForm />} />
+        <Route
+          path="login"
+          element={<LoginForm setIsSignIn={setIsSignIn} isSignIn={isSignIn} />}
+        />
+        <Route path="signUp" element={<SignUpForm isSignIn={isSignIn} />} />
         <Route
           path="/"
           element={
@@ -50,6 +56,7 @@ function App() {
             path="geography"
             element={<Geography isDashboard={isDashboard} />}
           />
+
           <Route path="users" element={<Users />} />
           <Route path="invoices" element={<Invoices />} />
           <Route path="line" element={<LineChart />} />
