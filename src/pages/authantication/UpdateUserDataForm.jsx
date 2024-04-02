@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 function UpdateUserDataForm() {
   const [fullName, setFullName] = useState("");
   const [avatar, setAvatar] = useState(null);
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const theme = useTheme();
 
   // snackbar

@@ -15,8 +15,8 @@ import PieChart from "./pages/pieChart/PieChart";
 import LoginForm from "./pages/authantication/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Users from "./pages/users/Users";
-import Account from "./pages/users/Account";
 import SignUpForm from "./pages/authantication/SignUpForm";
+// import Account from "./pages/users/Account";
 
 function App() {
   const [isDashboard, setIsDashboard] = useState(false);
@@ -61,7 +61,7 @@ function App() {
           <Route path="invoices" element={<Invoices />} />
           <Route path="line" element={<LineChart />} />
           <Route path="pie" element={<PieChart isDashboard={isDashboard} />} />
-          <Route path="account" element={<Account />} />
+          {/* <Route path="account" element={<Account />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>

@@ -16,7 +16,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { useTheme } from "@emotion/react";
 import Logout from "../pages/authantication/Logout";
 import UserAvatar from "./UserAvatar";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -39,10 +39,10 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 function TopBar({ open, setMode, handleDrawerOpen }) {
-  const navigate = useNavigate();
-  function handleClickedUser() {
-    navigate("/account");
-  }
+  // const navigate = useNavigate();
+  // function handleClickedUser() {
+  //   navigate("/account");
+  // }
   const theme = useTheme();
   return (
     <AppBar position="fixed" open={open}>
@@ -114,7 +114,7 @@ function TopBar({ open, setMode, handleDrawerOpen }) {
               <IconButton
                 aria-label="delete"
                 color="inherit"
-                onClick={handleClickedUser}
+                // onClick={handleClickedUser}
               >
                 <PersonOutlineOutlinedIcon />
               </IconButton>
