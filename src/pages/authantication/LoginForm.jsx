@@ -97,6 +97,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
             }}
           >
             <label
+              htmlFor="email"
               style={{
                 fontSize: "0.9rem",
                 fontWeight: 500,
@@ -106,6 +107,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
               Email Address
             </label>
             <input
+              id="email"
               disabled={loading}
               style={{
                 width: "100%",
@@ -137,6 +139,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
             }}
           >
             <label
+              htmlFor="password"
               style={{
                 fontSize: "0.9rem",
                 fontWeight: 500,
@@ -146,6 +149,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
               Password
             </label>
             <input
+              id="password"
               disabled={loading}
               style={{
                 width: "100%",
