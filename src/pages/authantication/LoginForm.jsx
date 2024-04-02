@@ -96,7 +96,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
               gap: 0.8,
             }}
           >
-            <Typography
+            <label
               sx={{
                 fontSize: "0.9rem",
                 fontWeight: 500,
@@ -104,7 +104,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
               }}
             >
               Email Address
-            </Typography>
+            </label>
             <input
               disabled={loading}
               style={{
@@ -136,7 +136,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
               gap: 0.8,
             }}
           >
-            <Typography
+            <label
               sx={{
                 fontSize: "0.9rem",
                 fontWeight: 500,
@@ -144,7 +144,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
               }}
             >
               Password
-            </Typography>
+            </label>
             <input
               disabled={loading}
               style={{
