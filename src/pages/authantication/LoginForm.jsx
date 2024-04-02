@@ -97,7 +97,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
             }}
           >
             <label
-              sx={{
+              style={{
                 fontSize: "0.9rem",
                 fontWeight: 500,
                 color: theme.palette.grey[800],
@@ -137,7 +137,7 @@ function LoginForm({ isSignIn, setIsSignIn }) {
             }}
           >
             <label
-              sx={{
+              style={{
                 fontSize: "0.9rem",
                 fontWeight: 500,
                 color: theme.palette.grey[800],
