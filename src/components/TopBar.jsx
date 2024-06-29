@@ -1,27 +1,30 @@
 import {
   Box,
   IconButton,
+  InputBase,
   Stack,
   Toolbar,
-  Tooltip,
+  Typography,
   styled,
+  useTheme,
 } from "@mui/material";
 import React from "react";
+import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import MuiAppBar from "@mui/material/AppBar";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import { alpha } from "@mui/material/styles";
+import { Delete } from "@mui/icons-material";
+import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import { useTheme } from "@emotion/react";
-import Logout from "../pages/authantication/Logout";
-import UserAvatar from "./UserAvatar";
-// import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
+  // @ts-ignore
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
@@ -38,14 +41,54 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-function TopBar({ open, setMode, handleDrawerOpen }) {
-  // const navigate = useNavigate();
-  // function handleClickedUser() {
-  //   navigate("/account");
-  // }
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(3),
+    width: "auto",
+  },
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
+    },
+  },
+}));
+
+const TopBar = ({ open, handleDrawerOpen, setMode }) => {
   const theme = useTheme();
   return (
-    <AppBar position="fixed" open={open}>
+    <AppBar
+      position="fixed"
+      // @ts-ignore
+      open={open}
+    >
       <Toolbar>
         <IconButton
           color="inherit"
@@ -59,76 +102,67 @@ function TopBar({ open, setMode, handleDrawerOpen }) {
         >
           <MenuIcon />
         </IconButton>
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <UserAvatar />
 
-          <Stack direction={"row"}>
-            {theme.palette.mode === "light" ? (
-              <Tooltip title="light">
-                <IconButton
-                  aria-label="delete"
-                  color="inherit"
-                  onClick={() => {
-                    localStorage.setItem(
-                      "theme",
-                      theme.palette.mode === "light" ? "dark" : "light"
-                    );
-                    setMode((prevMode) =>
-                      prevMode === "light" ? "dark" : "light"
-                    );
-                  }}
-                >
-                  <LightModeOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-            ) : (
-              <Tooltip title="dark">
-                <IconButton
-                  aria-label="delete"
-                  color="inherit"
-                  onClick={() => {
-                    localStorage.setItem(
-                      "theme",
-                      theme.palette.mode === "light" ? "dark" : "light"
-                    );
-                    setMode((prevMode) =>
-                      prevMode === "light" ? "dark" : "light"
-                    );
-                  }}
-                >
-                  <DarkModeOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-            )}
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ "aria-label": "search" }}
+          />
+        </Search>
 
-            <Logout />
+        <Box flexGrow={1} />
 
-            <Tooltip title="user">
-              <IconButton
-                aria-label="delete"
-                color="inherit"
-                // onClick={handleClickedUser}
-              >
-                <PersonOutlineOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="settings">
-              <IconButton aria-label="delete" color="inherit">
-                <SettingsOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-          </Stack>
-        </Box>
+        <Stack direction={"row"}>
+          {theme.palette.mode === "light" ? (
+            <IconButton
+              onClick={() => {
+                localStorage.setItem(
+                  "currentMode",
+                  theme.palette.mode === "dark" ? "light" : "dark"
+                );
+                setMode((prevMode) =>
+                  prevMode === "light" ? "dark" : "light"
+                );
+              }}
+              color="inherit"
+            >
+              <LightModeOutlinedIcon />
+            </IconButton>
+          ) : (
+            <IconButton
+              onClick={() => {
+                localStorage.setItem(
+                  "currentMode",
+                  theme.palette.mode === "dark" ? "light" : "dark"
+                );
+                setMode((prevMode) =>
+                  prevMode === "light" ? "dark" : "light"
+                );
+              }}
+              color="inherit"
+            >
+              <DarkModeOutlinedIcon />
+            </IconButton>
+          )}
+
+          <IconButton color="inherit">
+            <NotificationsOutlinedIcon />
+          </IconButton>
+
+          <IconButton color="inherit">
+            <SettingsOutlinedIcon />
+          </IconButton>
+
+          <IconButton color="inherit">
+            <Person2OutlinedIcon />
+          </IconButton>
+        </Stack>
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default TopBar;

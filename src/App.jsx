@@ -13,7 +13,7 @@ import Invoices from "./pages/invoices/Invoices";
 import LineChart from "./pages/lineChart/LineChart";
 import PieChart from "./pages/pieChart/PieChart";
 import LoginForm from "./pages/authantication/LoginForm";
-import ProtectedRoute from "./components/ProtectedRoute";
+// import ProtectedRoute from "./components/ProtectedRoute";
 import Users from "./pages/users/Users";
 import SignUpForm from "./pages/authantication/SignUpForm";
 // import Account from "./pages/users/Account";
@@ -24,19 +24,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
+        {/* <Route
           path="login"
           element={<LoginForm setIsSignIn={setIsSignIn} isSignIn={isSignIn} />}
-        />
-        <Route path="signUp" element={<SignUpForm isSignIn={isSignIn} />} />
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <AppLayout />
-            </ProtectedRoute>
-          }
-        >
+        /> */}
+        {/* <Route path="signUp" element={<SignUpForm isSignIn={isSignIn} />} /> */}
+        <Route path="/" element={<AppLayout />}>
           <Route
             index
             element={
