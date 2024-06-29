@@ -34,6 +34,9 @@ function SignUpForm({ isSignIn }) {
       setLoading(true);
       await signUp(data);
       handleClick();
+      if (isSignIn) {
+        navigate("/");
+      }
       reset();
     } catch (error) {
       console.log("error in sign up yalaa");
